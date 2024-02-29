@@ -35,7 +35,8 @@
     <div class ="button save">Save Story</div>
     <div class ="button title">Name Your Story</div>
     <script>
-        fetch('sentences.json')
+        try{
+        fetch(sentences.json)
             .then(response => response.json())
             .then(data => {
                 const array1 = data.array1;
@@ -59,7 +60,9 @@
                 }
             )
 
-        })
-        .catch(error => console.error('Error fetching JSON:', error));
+        })}
+        catch(error){
+            
+        }
     </script>
   </body>

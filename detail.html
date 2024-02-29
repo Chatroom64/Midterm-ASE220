@@ -35,7 +35,7 @@
     <div class ="button save">Save Story</div>
     <div class ="button title">Name Your Story</div>
     <script>
-        fetch('sentences.json')
+        fetch(sentences.json)
             .then(response => response.json())
             .then(data => {
                 const array1 = data.array1;

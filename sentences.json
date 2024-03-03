@@ -1,17 +1,17 @@
 [
     {
-        "array1":"David-Michael went to the movies with his best friend",
-        "array2":"Ethan walked into a grocery store.",
-        "array3":"Ethan and David-Michael were playing Uno this morning."
+        "option1":"David-Michael went to the movies with his best friend.",
+        "option2":"Ethan walked into a grocery store.",
+        "option3":"Ethan and David-Michael were playing Uno this morning."
     },
     {
-        "array1":"When he goes to use the bathroom, he steps on a Lego.",
-        "array2":"When he goes to buy a snack, he sees a Marvel movie poster.",
-        "array3":"Ethan sets down an Uno reverse card."
+        "option1":"When he goes to use the bathroom, he steps on a Lego.",
+        "option2":"When he goes to buy a snack, he sees a Marvel movie poster.",
+        "option3":"Ethan sets down an Uno reverse card."
     },
     {
-        "array1":"'Who uses Legos in a movie theater?' he asks.",
-        "array2":"'I should really go watch that movie,' he said.",
-        "array3":"David-Michael says, 'Am I a joke to you?'"
+        "option1":"'Who uses Legos in a movie theater?' he asks.",
+        "option2":"'I should really go watch that movie,' he said.",
+        "option3":"David-Michael says, 'Am I a joke to you?'"
     }
 ]

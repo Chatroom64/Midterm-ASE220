@@ -27,42 +27,50 @@
 </style>
   <body>
     <div class="container">
-        <div class="display">
+        <div id="display">
 
         </div>
     </div>
     <div class ="button gen">Generate Story</div>
     <div class ="button save">Save Story</div>
     <div class ="button title">Name Your Story</div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
     <script>
-        try{
-        fetch(sentences.json)
+            $(function(){
+        fetch('sentences.json')
             .then(response => response.json())
             .then(data => {
-                const array1 = data.array1;
-                const array2 = data.array2;
-                const array3 = data.array3;
+            console.log(data);
+                let var1 = data[0];
+                let var2 = data[1];
+                let var3 = data[2];
+                const rand1 = data[0].option1;
+                const rand2 = data[0].option2;
+                const rand3 = data[0].option3;
+                const rand4 = data[1].option1;
+                const rand5 = data[1].option2;
+                const rand6 = data[1].option3;
+                const rand7 = data[2].option1;
+                const rand8 = data[2].option2;
+                const rand9 = data[2].option3;
 
-                const randomVar1 = array1[Math.floor(Math.random() * array1.length)];
-                const randomVar2 = array2[Math.floor(Math.random() * array2.length)];
-                const randomVar3 = array3[Math.floor(Math.random() * array3.length)];
-
-                document.getElementById('randomVars').innerHTML = `
-                    <p>Random Variable 1: ${randomVar1}</p>
-                    <p>Random Variable 2: ${randomVar2}</p>
-                    <p>Random Variable 3: ${randomVar3}</p>
+/*
+                const randomVar1 = option1[Math.floor(Math.random() * option1.length)];
+                const randomVar2 = option2[Math.floor(Math.random() * option2.length)];
+                const randomVar3 = option3[Math.floor(Math.random() * option3.length)];
+*/
+                
+                $('.gen').click(
+                    function(){
+                document.getElementById('display').innerHTML = `
+                    <p>${var1}</p>
+                    <p>${var2}</p>
+                    <p>${var3}</p>
                 `;
+                    }
+                )
             })
-        (function(){
-            $('.gen').click(
-                function(){
-                    $('#display')[0].innerHTML = randomVar1+ " " + randomVar2 + " " + randomVar3;
-                }
-            )
 
-        })}
-        catch(error){
-            
-        }
+        })
     </script>
   </body>

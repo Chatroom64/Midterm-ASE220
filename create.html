@@ -42,6 +42,7 @@
         </form>
     </div>
     <div class = "button create">Create</div>
+    <div class = "button return">Back to Generator</div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
     <script>
     $(function(){
@@ -61,26 +62,27 @@
             // Call a function to save the new story
             saveStory(newStory);
         });
+        $('.return').click(function(){
+            window.location.href = 'index.html';
+        });
 
         function saveStory(story) {
-            // Perform a POST request to save the new story to the server
-            $.ajax({
-                url: 'create.php', // Adjust the URL accordingly
-                type: 'POST',
-                data: JSON.stringify(story),
-                contentType: 'application/json',
-                success: function(response) {
-                    alert('Story saved successfully!');
-                    // Optionally, you can clear the input fields after saving
-                    $('#intro').val('');
-                    $('#middle').val('');
-                    $('#punchline').val('');
-                },
-                error: function(xhr, status, error) {
-                    alert('Failed to save story: ' + error);
-                }
-            });
-        }
-    });
+            const newStory = {
+                "intro": intro,
+                "middle": middle,
+                "punchline": punchline
+            };
+            // Read from local storage
+        const stories = JSON.parse(localStorage.getItem('stories')) || [];
+
+        // Append the new story
+        stories.push(newStory);
+
+        // Write back to local storage
+        localStorage.setItem('stories', JSON.stringify(stories));
+            alert("Story successfully added!");
+            }
+        });
+        
     </script>
 </body>

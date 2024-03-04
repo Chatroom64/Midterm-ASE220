@@ -1,2 +1,5 @@
 # Midterm-ASE220
-[We know what this is. We don't need a description.]
+Group Member: Ethan Ramsdell
+Contributions: Created README and project Documentation page
+Group Member: David-Michael Davies
+Contributions: Created index, sentences.json, and added jquery file

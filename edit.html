@@ -28,7 +28,74 @@
         font-size:3rem;
         border-radius: 10px;
     }
+    label{font-size:2rem;}
+    option{font-size:2rem;}
+    select{font-size:2rem;}
 </style>
 <body>
-    
+    <h1>Settings</h1>
+    <div class = "options">
+        <form>
+            <label for="p-color">Page color:</label>
+            <select id="p-color">
+                <option value ="red">red</option>
+                <option value ="orange">orange</option>
+                <option value ="yellow">yellow</option>
+                <option value ="green">green</option>
+                <option value ="blue">blue</option>
+                <option value="default lightblue">light blue</option>
+                <option value ="purple">purple</option>
+                <option value ="black">black</option>
+                <option value ="white">white</option>
+            </select><br>
+            <label for="b-color">Button color:</label>
+            <select id="b-color">
+                <option value ="red">red</option>
+                <option value ="default orange">orange</option>
+                <option value ="yellow">yellow</option>
+                <option value ="green">green</option>
+                <option value ="blue">blue</option>
+                <option value ="purple">purple</option>
+                <option value ="black">black</option>
+                <option value ="white">white</option>
+                <option value="gray">gray</option>    
+            </select><br>
+            <label for="r-color">Button rollover color:</label>
+            <select id="r-color">
+                <option value ="default red">red</option>
+                <option value ="orange">orange</option>
+                <option value ="yellow">yellow</option>
+                <option value ="green">green</option>
+                <option value ="blue">blue</option>
+                <option value ="purple">purple</option>
+                <option value ="black">black</option>
+                <option value ="white">white</option>
+                <option value="gray">gray</option>
+            </select><br>    
+            <label for="d-color">Display color:</label>
+            <select id="d-color">
+                <option value ="red">red</option>
+                <option value ="orange">orange</option>
+                <option value ="yellow">yellow</option>
+                <option value ="green">green</option>
+                <option value ="blue">blue</option>
+                <option value ="purple">purple</option>
+                <option value ="black">black</option>
+                <option value ="white">white</option>
+                <option value="default gray">gray</option>
+            </select><br>
+            <label for="font-size">Font size:</label>
+            <select id="font-size">
+                <option value="50">0.5x</option>
+                <option value="default 100">Default</option>
+                <option value="150"></option>
+                <option value="200"></option>
+                <option value="250"></option>
+                <option value="300"></option>
+            </select><br>
+        </form>
+        <button class="button save">Save changes</button>
+        <button class="button reset">Reset to defaults</button>
+        <button class="button return">Back to Generator</button>
+    </div>
 </body>

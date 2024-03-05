@@ -37,6 +37,7 @@
             <p></p>
         </div>
     <button class="button export">Export Story</button>
+    <button class="button return">Back to Generator</button>
         
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -87,6 +88,9 @@ Punchline: ${var3}
                 // Simulate a click on the link to trigger the download
                 link.click();
             });
+            $('.return').click(function(){
+                window.location.href="index.html";
+            })
         });
     </script>
 </body>

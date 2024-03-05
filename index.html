@@ -11,6 +11,12 @@
     body{
         background-color: lightblue;
     }
+    h1{
+        text-align: center;
+    }
+    h2{
+        text-align: center;
+    }
     .button{
         background-color: orange;
         border:2px solid white;
@@ -30,6 +36,8 @@
     }
 </style>
   <body>
+    <h1>Welcome to our Story Generator!</h1>
+    <h2>Click Generate Story to get started.</h2>
     <div class="container">
         <div id="display">
             <p></p>
@@ -78,7 +86,7 @@
                     console.error('Error fetching JSON data:', error);
                 });
                 $('.save').click(function(){
-                    window.location.href = 'save.html';
+                    window.location.href = 'update.html';
                 })
                 $('.create').click(function(){
                     window.location.href = 'create.html';

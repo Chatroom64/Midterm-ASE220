@@ -36,7 +36,8 @@
         border:2px solid white;
         font-size:3rem;
         border-radius: 10px;
-        height: 475px;
+        height:475px;
+        overflow-y: scroll;
     }
 </style>
   <body>
@@ -51,7 +52,7 @@
     <button class="button gen">Generate Story</button><br>
     <button class="button save">Save Story</button><br>
     <button class="button create">Add Your Own Story</button></br>
-    <button class="button settings">Story Settings</button></br>
+    <button class="button settings">Settings</button></br>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
     <script>
@@ -99,8 +100,27 @@
                     window.location.href = 'create.html';
                 })
                 $('.settings').click(function(){
-                window.location.href = 'detail.html';
+                    window.location.href = 'edit.html'
                 })
-        });                
-        </script>     
+        });
+        // Function to load settings from local storage
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('settings'));
+            if (settings) {
+                $('body').css('background-color', settings.pageColor);
+                $('.button').css('background-color', settings.buttonColor);
+                $('#display').css('background-color', settings.displayColor);
+                $('body').css('font-size', settings.fontSize);
+                $('body').css('color', settings.pageFontColor);
+                $('.button').css('color', settings.buttonFontColor);
+            }
+        }
+
+        // Call loadSettings function when the document is ready
+        $(document).ready(function() {
+            loadSettings();
+        });
+                
+        </script> 
+            
   </body>

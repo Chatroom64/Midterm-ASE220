@@ -32,57 +32,69 @@
 </style>
 <body>
     <div class = "forms">
-        <form>
+        <form id="saveForm">
             <label for="intro">Intro:</label>
             <input type="text" id="intro" name="intro"><br><br>
             <label for="middle">Middle:</label>
             <input type="text" id="middle" name="middle"><br><br>
             <label for="punchline">Punchline:</label>
             <input type="text" id="punchline" name="punchline"><br><br>
+            <button type="submit" class="button create">Save Story</button>
         </form>
     </div>
-    <div class = "button create">Create</div>
-    <div class = "button return">Back to Generator</div>
+    <!--<div class = "button create">Create</div>-->
+    <button class = "button return">Back to Generator</button>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
     <script>
-    $(function(){
-        $('.create').click(function(){
-            // Get the user input values
-            const intro = $('#intro').val();
-            const middle = $('#middle').val();
-            const punchline = $('#punchline').val();
+        $(function() {
+            $('#saveForm').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
 
-            // Construct the story object
-            const newStory = {
-                "intro": intro,
-                "middle": middle,
-                "punchline": punchline
-            };
+                // Get the values from the input fields
+                const intro = $('#intro').val();
+                const middle = $('#middle').val();
+                const punchline = $('#punchline').val();
 
-            // Call a function to save the new story
-            saveStory(newStory);
+                // Construct the story object
+                const story = {
+                    intro: intro,
+                    middle: middle,
+                    punchline: punchline
+                };
+
+                // Send the data to the server using AJAX
+                $.ajax({
+                    url: 'create.php', // Replace with your PHP endpoint
+                    type: 'POST',
+                    data: JSON.stringify(story),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        alert('Story saved successfully!');
+                        // Optionally, you can redirect the user after saving
+                        // window.location.href = 'index.html';
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error saving story: ' + error);
+                    }
+                });
+            });
         });
-        $('.return').click(function(){
-            window.location.href = 'index.html';
-        });
+function loadSettings() {
+    const settings = JSON.parse(localStorage.getItem('settings'));
+    if (settings) {
+        $('body').css('background-color', settings.pageColor);
+        $('.button').css('background-color', settings.buttonColor);
+        $('#display').css('background-color', settings.displayColor);
+        $('body').css('font-size', settings.fontSize);
+        $('body').css('color', settings.pageFontColor);
+        $('.button').css('color', settings.buttonFontColor);
+    }
+}
 
-        function saveStory(story) {
-            const newStory = {
-                "intro": intro,
-                "middle": middle,
-                "punchline": punchline
-            };
-            // Read from local storage
-        const stories = JSON.parse(localStorage.getItem('stories')) || [];
+// Call loadSettings function when the document is ready
+$(document).ready(function() {
+    loadSettings();
+});
 
-        // Append the new story
-        stories.push(newStory);
-
-        // Write back to local storage
-        localStorage.setItem('stories', JSON.stringify(stories));
-            alert("Story successfully added!");
-            }
-        });
-        
     </script>
 </body>

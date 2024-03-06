@@ -1,4 +1,4 @@
-<!--Main Page-->
+<!--Settings Page-->
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,73 +29,147 @@
         border-radius: 10px;
     }
     label{font-size:2rem;}
-    option{font-size:2rem;}
-    select{font-size:2rem;}
+    button{font-size:2rem;}
+    div{font-size:2rem;}
+    value[red]{
+        background-color: red;
+    }value[orange]{
+        background-color: orange;
+    }value[blue]{
+        background-color: blue;
+    }value[yellow]{
+        background-color: yellow;
+    }value[green]{
+        background-color: green;
+    }value[purple]{
+        background-color: purple;
+    }value[white]{
+        background-color: white;
+    }value[gray]{
+        background-color: lightgray;
+    }value[lightblue]{
+        background-color: lightblue;
+    }value[black]{
+        background-color: black;
+        color: white;
+    }
+
 </style>
 <body>
     <h1>Settings</h1>
-    <div class = "options">
-        <form>
+    <div class = "buttons">
             <label for="p-color">Page color:</label>
-            <select id="p-color">
-                <option value ="red">red</option>
-                <option value ="orange">orange</option>
-                <option value ="yellow">yellow</option>
-                <option value ="green">green</option>
-                <option value ="blue">blue</option>
-                <option value="default lightblue">light blue</option>
-                <option value ="purple">purple</option>
-                <option value ="black">black</option>
-                <option value ="white">white</option>
-            </select><br>
+            <div id="p-color">
+                <button class="button colors" value ="red">red</button>
+                <button class="button colors" value ="orange">orange</button>
+                <button class="button colors" value ="yellow">yellow</button>
+                <button class="button colors" value ="green">green</button>
+                <button class="button colors" value ="blue">blue</button>
+                <button class="button colors" value ="lightblue" id="default">light blue</button>
+                <button class="button colors" value ="purple">purple</button>
+                <button class="button colors" value ="black">black</button>
+                <button class="button colors" value ="white">white</button>
+            </div><br>
             <label for="b-color">Button color:</label>
-            <select id="b-color">
-                <option value ="red">red</option>
-                <option value ="default orange">orange</option>
-                <option value ="yellow">yellow</option>
-                <option value ="green">green</option>
-                <option value ="blue">blue</option>
-                <option value ="purple">purple</option>
-                <option value ="black">black</option>
-                <option value ="white">white</option>
-                <option value="gray">gray</option>    
-            </select><br>
-            <label for="r-color">Button rollover color:</label>
-            <select id="r-color">
-                <option value ="default red">red</option>
-                <option value ="orange">orange</option>
-                <option value ="yellow">yellow</option>
-                <option value ="green">green</option>
-                <option value ="blue">blue</option>
-                <option value ="purple">purple</option>
-                <option value ="black">black</option>
-                <option value ="white">white</option>
-                <option value="gray">gray</option>
-            </select><br>    
+            <div id="b-color">
+                <button class="button button-colors" value ="red">red</button>
+                <button class="button button-colors" value ="orange"id="default">orange</button>
+                <button class="button button-colors" value ="yellow">yellow</button>
+                <button class="button button-colors" value ="green">green</button>
+                <button class="button button-colors" value ="blue">blue</button>
+                <button class="button button-colors" value ="purple">purple</button>
+                <button class="button button-colors" value ="black">black</button>
+                <button class="button button-colors" value ="white">white</button>
+                <button class="button button-colors" value="gray">gray</button>    
+            </div><br> 
             <label for="d-color">Display color:</label>
-            <select id="d-color">
-                <option value ="red">red</option>
-                <option value ="orange">orange</option>
-                <option value ="yellow">yellow</option>
-                <option value ="green">green</option>
-                <option value ="blue">blue</option>
-                <option value ="purple">purple</option>
-                <option value ="black">black</option>
-                <option value ="white">white</option>
-                <option value="default gray">gray</option>
-            </select><br>
+            <div id="d-color">
+                <button class="button display-colors" value ="red">red</button>
+                <button class="button display-colors" value ="orange">orange</button>
+                <button class="button display-colors" value ="yellow">yellow</button>
+                <button class="button display-colors" value ="green">green</button>
+                <button class="button display-colors" value ="blue">blue</button>
+                <button class="button display-colors" value ="purple">purple</button>
+                <button class="button display-colors" value ="black">black</button>
+                <button class="button display-colors" value ="white">white</button>
+                <button class="button display-colors" value="gray"id="default">gray</button>
+            </div><br>
             <label for="font-size">Font size:</label>
-            <select id="font-size">
-                <option value="50">0.5x</option>
-                <option value="default 100">Default</option>
-                <option value="150"></option>
-                <option value="200"></option>
-                <option value="250"></option>
-                <option value="300"></option>
-            </select><br>
-        </form>
-        <button class="button save">Save changes</button>
+            <div id="font-size">
+                <button class="button fontsizes" value="50">0.5x</button>
+                <button class="button fontsizes" value="100"id="default">Default</button>
+                <button class="button fontsizes" value="150">1.5x</button>
+                <button class="button fontsizes" value="200">2x</button>
+                <button class="button fontsizes" value="250">2.5x</button>
+                <button class="button fontsizes" value="300">3x</button>
+            </div><br>
+        <button id="saveBtn" class="button save">Save changes</button>
         <button class="button reset">Reset to defaults</button>
         <button class="button return">Back to Generator</button>
+        <div id="display"></div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
+        <script>
+                $('.colors').click(function() {
+                const color = $(this).val();
+                $('body').css('background-color', color);
+                if (color === 'black') {
+                    $('body').css('color', 'white');
+                } else {
+                    $('body').css('color', 'black');
+                }
+                });
+                // Change button color
+                $('.button-colors').click(function() {
+                const color = $(this).val();
+                $('.button').css('background-color', color);;
+                if(color === "black"){
+                    $('.button').css('color', 'white');
+                }
+                else {
+                    $('.button').css('color', 'black');
+                }
+                });
+
+                // Change display color
+                $('.display-colors').click(function() {
+                    const color = $(this).val();
+                    $('#display').css('background-color', color);
+                });
+        
+                // Change font size
+                $('.fontsizes').click(function() {
+                    const fontSize = $(this).val();
+                    $('body').css('font-size', fontSize+'rem');
+                });
+            
+        // Define the saveSettings function
+        function saveSettings() {
+            console.log('Saving settings...');
+            
+
+            const settings = {
+                pageColor: $('body').css('background-color'),
+                buttonColor: $('.button').css('background-color'),
+                displayColor: $('#display').css('background-color'),
+                fontSize: $('body').css('font-size'),
+                pageFontColor: $('body').css('color'),
+                buttonFontColor: $('.button').css('color')
+            };
+            console.log(settings);
+            localStorage.setItem('settings', JSON.stringify(settings));
+        }
+
+        // Attach event listener to the "Save changes" button
+        $('#saveBtn').click(function() {
+            console.log('Save button clicked.');
+            saveSettings();
+            alert('Settings saved successfully!');
+        });
+
+        $('.return').click(function() {
+            window.location.href = 'index.html';
+        });
+        </script>
+        
     </div>
 </body>

@@ -71,9 +71,9 @@
                     return;
                 }
                 const storyContent = `
-Intro: ${var1}
-Middle: ${var2}
-Punchline: ${var3}
+                    Intro: ${var1}
+                    Middle: ${var2}
+                    Punchline: ${var3}
                 `;
                 // Story content
                 const blob = new Blob([storyContent], { type: 'text/plain' });
@@ -91,6 +91,23 @@ Punchline: ${var3}
             $('.return').click(function(){
                 window.location.href="index.html";
             })
+        });
+                // Function to load settings from local storage
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('settings'));
+            if (settings) {
+                $('body').css('background-color', settings.pageColor);
+                $('.button').css('background-color', settings.buttonColor);
+                $('#display').css('background-color', settings.displayColor);
+                $('body').css('font-size', settings.fontSize);
+                $('body').css('color', settings.pageFontColor);
+                $('.button').css('color', settings.buttonFontColor);
+            }
+        }
+
+        // Call loadSettings function when the document is ready
+        $(document).ready(function() {
+            loadSettings();
         });
     </script>
 </body>

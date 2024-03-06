@@ -40,52 +40,47 @@
 <body>
     <h1>Story Settings</h1>
     <h2>Click the boxes to decide which sentences to include in the generator.</h2>
-    <div class="container-md">
-        <div class="row">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                <p></p>
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                <p></p>
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                <p></p>
-                </label>
-              </div>
+    <div class="container-md" id="checkboxes-container">
             
         </div>
-        <button class="button return">Back to Generator</button>
+        <div class="container">
+            <button class="button submit">Submit</button>
+            <button class="button return">Back to Generator</button>
+        </div>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
         <script>
-          fetch('sentences.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log(data);
+                $(document).ready(function(){
+  // Fetch JSON data from the URL
+  fetch('sentences.json')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      // Loop through each story
+      for (var storyIndex = 0; storyIndex < data.stories.length; storyIndex++) {
+        var story = data.stories[storyIndex];
+        
+        // Create checkboxes for intro, middle, and punchline
+        createCheckbox(storyIndex, 'intro', story.intro);
+        createCheckbox(storyIndex, 'middle', story.middle);
+        createCheckbox(storyIndex, 'punchline', story.punchline);
+      }
+    })
+    .catch(function(error) {
+      console.error('Error fetching data:', error);
+    });
+});
 
-            const introSentences = data.map(item => item.intro);
-            const middleSentences = data.map(item => item.middle);
-            const punchlineSentences = data.map(item => item.punchline); 
-            console.log(introSentences);
-            console.log(middleSentences);
-            console.log(punchlineSentences);
-            for(let i=0; i<introSentences.length;i++){
-              document.getElementById("form-check-label").innerHTML(introSentences[i])
-            }
-                });
-            
+function createCheckbox(storyIndex, type, sentence) {
+  $('#checkboxes-container').append(
+    '<div class="form-check">' +
+      '<input class="form-check-input" type="checkbox" value="" id="checkbox' + storyIndex + '_' + type + '" checked>' +
+      '<label class="form-check-label" for="checkbox' + storyIndex + '_' + type + '">' +
+        '<p>' + sentence + '</p>' +
+      '</label>' +
+    '</div>'
+  );
+}
             $('.return').click(function(){
             window.location.href="index.html";
         });

@@ -52,23 +52,24 @@
     <button class="button gen">Generate Story</button><br>
     <button class="button save">Save Story</button><br>
     <button class="button create">Add Your Own Story</button></br>
+    <button class="button storySettings">Story Settings</button></br>
     <button class="button settings">Settings</button></br>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
     <script>
         $(function(){
-            fetch('sentences.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log(data);
-            const introSentences = data.map(item => item.intro);
-            const middleSentences = data.map(item => item.middle);
-            const punchlineSentences = data.map(item => item.punchline);
+    fetch('sentences.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            const introSentences = data.stories.map(item => item.intro);
+            const middleSentences = data.stories.map(item => item.middle);
+            const punchlineSentences = data.stories.map(item => item.punchline);
 
             $('.gen').click(function(){
                 const randomIntroIndex = Math.floor(Math.random() * introSentences.length);
@@ -79,10 +80,10 @@
                 const var2 = middleSentences[randomMiddleIndex];
                 const var3 = punchlineSentences[randomPunchlineIndex];
 
-                        document.getElementById('display').innerHTML = `
-                            <p>${var1}</p>
-                            <p>${var2}</p>
-                            <p>${var3}</p>
+                document.getElementById('display').innerHTML = `
+                    <p>${var1}</p>
+                    <p>${var2}</p>
+                    <p>${var3}</p>
                         `;
                 sessionStorage.setItem('var1', var1);
                 sessionStorage.setItem('var2', var2);
@@ -101,6 +102,9 @@
                 })
                 $('.settings').click(function(){
                     window.location.href = 'edit.html'
+                })
+                $('.storySettings').click(function(){
+                    window.location.href = 'detail.html'
                 })
         });
         // Function to load settings from local storage

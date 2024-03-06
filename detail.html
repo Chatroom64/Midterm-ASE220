@@ -50,24 +50,37 @@
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
         <script>
                 $(document).ready(function(){
-                // Fetch JSON data from the URL
-                fetch('sentences.json')
-                  .then(response => response.json())
-                  .then(data => {
-                    // Loop through the data and create checkboxes
-                    data.forEach(function(sentence, index) {
-                      $('#checkboxes-container').append(`
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="checkbox${index}" checked>
-                          <label class="form-check-label" for="checkbox${index}">
-                            <p>${sentence}</p>
-                          </label>
-                        </div>
-                      `);
-                    });
-                  })
-                  .catch(error => console.error('Error fetching data:', error));
-              });
+  // Fetch JSON data from the URL
+  fetch('sentences.json')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      // Loop through each story
+      for (var storyIndex = 0; storyIndex < data.stories.length; storyIndex++) {
+        var story = data.stories[storyIndex];
+        
+        // Create checkboxes for intro, middle, and punchline
+        createCheckbox(storyIndex, 'intro', story.intro);
+        createCheckbox(storyIndex, 'middle', story.middle);
+        createCheckbox(storyIndex, 'punchline', story.punchline);
+      }
+    })
+    .catch(function(error) {
+      console.error('Error fetching data:', error);
+    });
+});
+
+function createCheckbox(storyIndex, type, sentence) {
+  $('#checkboxes-container').append(
+    '<div class="form-check">' +
+      '<input class="form-check-input" type="checkbox" value="" id="checkbox' + storyIndex + '_' + type + '" checked>' +
+      '<label class="form-check-label" for="checkbox' + storyIndex + '_' + type + '">' +
+        '<p>' + sentence + '</p>' +
+      '</label>' +
+    '</div>'
+  );
+}
             $('.return').click(function(){
             window.location.href="index.html";
         })

@@ -48,8 +48,7 @@
     <script>
         $(function() {
             $('#saveForm').submit(function(event) {
-                event.preventDefault(); // Prevent default form submission
-
+                event.preventDefault();
                 // Get the values from the input fields
                 const intro = $('#intro').val();
                 const middle = $('#middle').val();
@@ -61,22 +60,21 @@
                     middle: middle,
                     punchline: punchline
                 };
-
-                // Send the data to the server using AJAX
                 $.ajax({
-                    url: 'create.php', // Replace with your PHP endpoint
+                    url: 'create.php',
                     type: 'POST',
                     data: JSON.stringify(story),
                     contentType: 'application/json',
                     success: function(response) {
                         alert('Story saved successfully!');
-                        // Optionally, you can redirect the user after saving
-                        // window.location.href = 'index.html';
                     },
                     error: function(xhr, status, error) {
                         alert('Error saving story: ' + error);
                     }
                 });
+            });
+            $('.return').click(function(){
+                
             });
         });
 function loadSettings() {

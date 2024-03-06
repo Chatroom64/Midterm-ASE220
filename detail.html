@@ -65,20 +65,41 @@
         <button class="button return">Back to Generator</button>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
         <script>
+          fetch('sentences.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+
+            const introSentences = data.map(item => item.intro);
+            const middleSentences = data.map(item => item.middle);
+            const punchlineSentences = data.map(item => item.punchline); 
+            console.log(introSentences);
+            console.log(middleSentences);
+            console.log(punchlineSentences);
+            for(let i=0; i<introSentences.length;i++){
+              document.getElementById("form-check-label").innerHTML(introSentences[i])
+            }
+                });
             
             $('.return').click(function(){
             window.location.href="index.html";
-        })
-        // Function to load settings from local storage
-function loadSettings() {
-    const settings = JSON.parse(localStorage.getItem('settings'));
-    if (settings) {
-        $('body').css('background-color', settings.pageColor);
-        $('.button').css('background-color', settings.buttonColor);
-        $('#display').css('background-color', settings.displayColor);
-        $('body').css('font-size', settings.fontSize);
-        $('body').css('color', settings.pageFontColor);
-        $('.button').css('color', settings.buttonFontColor);
+        });
+      
+          // Function to load settings from local storage
+          function loadSettings() {
+          const settings = JSON.parse(localStorage.getItem('settings'));
+          if (settings) {
+          $('body').css('background-color', settings.pageColor);
+          $('.button').css('background-color', settings.buttonColor);
+          $('#display').css('background-color', settings.displayColor);
+          $('body').css('font-size', settings.fontSize);
+          $('body').css('color', settings.pageFontColor);
+          $('.button').css('color', settings.buttonFontColor);
     }
 }
 
